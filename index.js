@@ -9,6 +9,7 @@ var http = require('http');
 var server =http.Server(app);
 var PORTA = process.env.PORT||5000;
 
+app.use(express.static('client'))
 app.use(bodyparser.json());
 
 var mysqlConnection = mysql.createConnection({
