@@ -5,6 +5,9 @@ var app = express();
 const bodyparser = require('body-parser');
 var upload = require('express-fileupload');
 const path = require('path');
+var http = require('http');
+var server =http.Server(app);
+var PORTA = process.env.PORT||5000;
 
 app.use(bodyparser.json());
 
@@ -14,7 +17,7 @@ var mysqlConnection = mysql.createConnection({
     password:'C@LeS1ta',
     database:'documentos'
 })
-app.listen( process.env.PORT||5000, ()=>console.log('Porta 5000'))
+server.listen( PORTA,  ()=>console.log('Porta 5000'))
 mysqlConnection.connect((err)=>{
     if(!err){
         console.log('Conexão bem Sucedida')
