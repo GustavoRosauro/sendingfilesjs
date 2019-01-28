@@ -14,7 +14,7 @@ var mysqlConnection = mysql.createConnection({
     password:'C@LeS1ta',
     database:'documentos'
 })
-app.listen( process.env.PORT||8080, ()=>console.log('Porta 8080'))
+app.listen( process.env.PORT||5000, ()=>console.log('Porta 5000'))
 mysqlConnection.connect((err)=>{
     if(!err){
         console.log('Conexão bem Sucedida')
