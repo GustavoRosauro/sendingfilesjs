@@ -54,17 +54,8 @@ app.post("/",(req,res)=>{
             }else{
                 mysqlConnection.query("INSERT INTO DOCUMENTOS (NOME) VALUES ('"+filename+"')");
             }
-            res.end();            
+            res.end('Enviado');            
         })
-        res.writeHead(200,{'content-type':'text/html'})
-    fs.readFile('./arquivos.html',null,(err,data)=>{
-        if(err){
-            console.log(err)
-        }else{
-            res.write(data);
-        }
-        res.end();
-    })
     }
     });
 app.get("/file",(req,res)=>{
