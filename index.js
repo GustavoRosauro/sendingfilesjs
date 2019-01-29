@@ -47,16 +47,25 @@ app.get('/',(req,res)=>{
 app.post("/",(req,res)=>{
     if(req.files){
         var file = req.files.filename,
-        filename = file.name + Date.now();
+        filename = Date.now() + file.name;
         file.mv("./upload/"+filename,(err)=>{
             if(err){
                 console.log(err);
             }else{
                 mysqlConnection.query("INSERT INTO DOCUMENTOS (NOME) VALUES ('"+filename+"')");
             }
-            res.end();
+            res.end();            
         })
     }
+    res.writeHead(200,{'content-type':'text/html'})
+    fs.readFile('./arquivos.html',null,(err,data)=>{
+        if(err){
+            console.log(err)
+        }else{
+            res.write(data);
+        }
+        res.end();
+    })
 });
 app.get("/file",(req,res)=>{
     mysqlConnection.query("SELECT * FROM DOCUMENTOS ",(err,rows,fields)=>{
