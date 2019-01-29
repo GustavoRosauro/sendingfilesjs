@@ -57,16 +57,7 @@ app.post("/",(req,res)=>{
             res.end();            
         })
     }
-    res.writeHead(200,{'content-type':'text/html'})
-    fs.readFile('./arquivos.html',null,(err,data)=>{
-        if(err){
-            console.log(err)
-        }else{
-            res.write(data);
-        }
-        res.end();
-    })
-});
+    });
 app.get("/file",(req,res)=>{
     mysqlConnection.query("SELECT * FROM DOCUMENTOS ",(err,rows,fields)=>{
         if(!err){
